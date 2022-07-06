@@ -2,19 +2,21 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Brand, Category, Product
+
 class BrandAdmin(admin.ModelAdmin):
     list_display = [ "name","is_active",]
     search_fields = ["name","is_active",]
     # readonly_fields = ["quantity",]
-class Meta:
-    model = Brand
-    admin.site.register(Brand,BrandAdmin)
+    class Meta:
+        model = Brand
+admin.site.register(Brand,BrandAdmin)
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = [ "name", "is_active",]
     search_fields = ["name","is_active",]
     # readonly_fields = ["quantity",]
-class Meta:
-    model = Category
+    class Meta:
+        model = Category
 admin.site.register(Category,CategoryAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
@@ -22,6 +24,6 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ["name", "price", "brand__name", "category__name",]
     list_filter = ["brand","category","price",]
     # readonly_fields = ["quantity",]
-class Meta:
-    model = Product
+    class Meta:
+        model = Product
 admin.site.register(Product, ProductAdmin)
